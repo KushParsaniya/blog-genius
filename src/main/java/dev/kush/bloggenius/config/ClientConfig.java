@@ -2,7 +2,6 @@ package dev.kush.bloggenius.config;
 
 import dev.kush.bloggenius.clients.DevToClient;
 import dev.kush.bloggenius.clients.SlackClient;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

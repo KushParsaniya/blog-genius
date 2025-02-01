@@ -12,6 +12,6 @@ public interface DevToClient {
     @PostExchange("/articles")
     DevToModels.DevToPostResponse publishToDevTo(
             @RequestBody DevToModels.DevToPostRequest article
-            ,@RequestHeader(name = "api-key") String apiKey
+            , @RequestHeader(name = "api-key") String apiKey
     );
 }

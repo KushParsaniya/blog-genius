@@ -25,3 +25,8 @@ slack:
 fact:
   checking:
     enabled: ${FACT_CHECKING_ENABLED:false}
+server:
+  tomcat:
+    threads:
+      min-spare: 1
+      max: 2

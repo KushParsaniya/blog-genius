@@ -11,5 +11,5 @@ public interface SlackClient {
     @PostExchange
     void publishToSlackChannel(
             @RequestBody SlackModels.SlackSendMessage slackSendMessage
-            );
+    );
 }

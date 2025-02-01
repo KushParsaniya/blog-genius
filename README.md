@@ -1,6 +1,9 @@
 # AI Blog Automation System
 
-A multi-agent AI blogging system built with Spring AI, Groq Ollama, and Spring Batch that automates the end-to-end process of blog creation and distribution. This project leverages multiple AI agents to generate blog topics, write content, optimize the draft, and fact-check the final post. Once completed, the blog is published on Dev.to, shared on Daily Dev, and sent to a Slack channel daily.
+A multi-agent AI blogging system built with Spring AI, Groq Ollama, and Spring Batch that automates the end-to-end
+process of blog creation and distribution. This project leverages multiple AI agents to generate blog topics, write
+content, optimize the draft, and fact-check the final post. Once completed, the blog is published on Dev.to, shared on
+Daily Dev, and sent to a Slack channel daily.
 
 ## Features
 
