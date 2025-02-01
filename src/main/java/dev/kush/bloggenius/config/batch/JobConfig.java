@@ -17,6 +17,7 @@ public class JobConfig {
     @Bean
     public Job generateBlogJob(
             JobRepository jobRepository,
+            @Qualifier("generateTopicStep") Step generateTopicStep,
             @Qualifier("generateBlogStep") Step generateBlogStep,
             @Qualifier("optimizeBlogStep") Step optimizeBlogStep,
             @Qualifier("factCheckBlogStep") Step factCheckBlogStep,
@@ -25,7 +26,8 @@ public class JobConfig {
     ) {
         return new JobBuilder("generateBlogJob", jobRepository)
                 .incrementer(new RunIdIncrementer())
-                .start(generateBlogStep)
+                .start(generateTopicStep)
+                .next(generateBlogStep)
                 .next(optimizeBlogStep)
 //                .next(factCheckBlogStep)
                 .next(publishDevToStep)

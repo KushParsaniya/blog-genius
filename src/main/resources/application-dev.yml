@@ -10,8 +10,18 @@ spring:
       chat:
         options:
           model: ${GROQ_CHAT_MODEL:llama-3.2-90b-vision-preview}
-
+  cloud:
+    config:
+      enabled: false
 dev:
   to:
     api-key: ${DEV_TO_API_KEY}
     base-url: ${DEV_TO_BASE_URL:https://dev.to}
+slack:
+  incoming-webhook:
+    url: ${SLACK_INCOMING_WEBHOOK_URL}
+    enabled: ${SLACK_INCOMING_WEBHOOK_ENABLED:true}
+
+fact:
+  checking:
+    enabled: ${FACT_CHECKING_ENABLED:false}

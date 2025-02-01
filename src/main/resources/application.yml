@@ -2,7 +2,7 @@ spring:
   application:
     name: blog-genius
   profiles:
-    active: dev
+    active: prod
 
   docker:
     compose:

@@ -1,7 +1,6 @@
 package dev.kush.bloggenius.config.batch;
 
 import dev.kush.bloggenius.models.DevToModels;
-import dev.kush.bloggenius.service.BlogGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.batch.core.Step;
@@ -11,6 +10,7 @@ import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,7 +36,7 @@ public class PublishDevToStepConfig {
 
     @Bean
     @StepScope
-    Tasklet publishDevToTasklet(ApplicationEventPublisher applicationEventPublisher, RetryTemplate retryTemplate) {
+    Tasklet publishDevToTasklet(@Value("${fact.checking.enabled}") boolean factCheckingOn, ApplicationEventPublisher applicationEventPublisher, RetryTemplate retryTemplate) {
         return (contribution, chunkContext) -> {
             var blog = (DevToModels.DevToPostRequestArticle) chunkContext.getStepContext()
                     .getStepExecution().getJobExecution().getExecutionContext().get("optimizedRequest");
@@ -51,7 +51,7 @@ public class PublishDevToStepConfig {
 
             return retryTemplate.execute(context -> {
                 try {
-                    if (factCheck != null && factCheck.isFactuallyCorrect()) {
+                    if ((factCheck != null && factCheck.isFactuallyCorrect()) || !factCheckingOn) {
                         log.info("Publishing to Dev.to for topic: {}", blog.title());
                         applicationEventPublisher.publishEvent(blog);
                     } else {
