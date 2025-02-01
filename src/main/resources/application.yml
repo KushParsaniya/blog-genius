@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: blog-genius
+  profiles:
+    active: dev
+
+  docker:
+    compose:
+      enabled: false
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+  datasource:
+    hikari:
+      auto-commit: false
+  batch:
+    jdbc:
+      initialize-schema: always
+    job:
+      enabled: false
